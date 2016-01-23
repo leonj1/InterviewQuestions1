@@ -62,4 +62,17 @@ public class AppTest extends TestCase {
         // then
         assertEquals("abcdefghijklmnopqrstuvwxyz", result);
     }
+
+    public void testHandleNulls() {
+        // given
+        String underTest = null;
+
+        // then
+        try {
+            App.listMissingLetters(underTest);
+            fail("Should throw Exception if null is passed in.");
+        } catch (Exception e) {
+            // good
+        }
+    }
 }

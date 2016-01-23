@@ -54,6 +54,10 @@ public class App {
      * @return      string of any missing letters
      */
     public static String listMissingLetters(String s) {
+        if (s == null) {
+            throw new IllegalArgumentException("Input S cannot be null");
+        }
+
         // copying map since we're going to edit its count
         Map<String, Integer> alphabet = new HashMap<String, Integer>(App.baseAlphabet);
 
