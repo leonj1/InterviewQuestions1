@@ -1,4 +1,4 @@
-package com.jose.commonbond1;
+package com.commonbond.problem1;
 
 import junit.framework.TestCase;
 
