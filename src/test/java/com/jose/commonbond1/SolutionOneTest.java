@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 /**
  * Unit test for simple App.
  */
-public class AppTest extends TestCase {
+public class SolutionOneTest extends TestCase {
 
 
     public void testFullAlphabetExpectEmptyString() {
@@ -13,7 +13,7 @@ public class AppTest extends TestCase {
         String underTest = "abcdefghijklmnopqrstuvwxyz";
 
         // when
-        String result = App.listMissingLetters(underTest);
+        String result = SolutionOne.listMissingLetters(underTest);
 
         // then
         assertEquals("", result);
@@ -24,7 +24,7 @@ public class AppTest extends TestCase {
         String underTest = "A quick brown fox jumps over the lazy dog";
 
         // when
-        String result = App.listMissingLetters(underTest);
+        String result = SolutionOne.listMissingLetters(underTest);
 
         // then
         assertEquals("", result);
@@ -35,7 +35,7 @@ public class AppTest extends TestCase {
         String underTest = "Four score and seven years ago.";
 
         // when
-        String result = App.listMissingLetters(underTest);
+        String result = SolutionOne.listMissingLetters(underTest);
 
         // then
         assertEquals("bhijklmpqtwxz", result);
@@ -46,7 +46,7 @@ public class AppTest extends TestCase {
         String underTest = "To be or not to be, that is the question!";
 
         // when
-        String result = App.listMissingLetters(underTest);
+        String result = SolutionOne.listMissingLetters(underTest);
 
         // then
         assertEquals("cdfgjklmpvwxyz", result);
@@ -57,7 +57,7 @@ public class AppTest extends TestCase {
         String underTest = "";
 
         // when
-        String result = App.listMissingLetters(underTest);
+        String result = SolutionOne.listMissingLetters(underTest);
 
         // then
         assertEquals("abcdefghijklmnopqrstuvwxyz", result);
@@ -69,7 +69,7 @@ public class AppTest extends TestCase {
 
         // then
         try {
-            App.listMissingLetters(underTest);
+            SolutionOne.listMissingLetters(underTest);
             fail("Should throw Exception if null is passed in.");
         } catch (Exception e) {
             // good

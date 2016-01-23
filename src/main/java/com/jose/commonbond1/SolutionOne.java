@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * Print string containing letters in alphabet that are missing from input
  */
-public class App {
+public class SolutionOne {
     private static final Map<String, Integer> baseAlphabet;
     static {
         baseAlphabet = new HashMap<String, Integer>();
@@ -59,7 +59,7 @@ public class App {
         }
 
         // copying map since we're going to edit its count
-        Map<String, Integer> alphabet = new HashMap<String, Integer>(App.baseAlphabet);
+        Map<String, Integer> alphabet = new HashMap<String, Integer>(SolutionOne.baseAlphabet);
 
         String[] asArray = s.toLowerCase().split("");
 
