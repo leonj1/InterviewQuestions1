@@ -1,33 +1,65 @@
 package com.jose.commonbond1;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 /**
  * Unit test for simple App.
  */
 public class AppTest extends TestCase {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName ) {
-        super( testName );
+
+
+    public void testFullAlphabetExpectEmptyString() {
+        // given
+        String underTest = "abcdefghijklmnopqrstuvwxyz";
+
+        // when
+        String result = App.listMissingLetters(underTest);
+
+        // then
+        assertEquals("", result);
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite() {
-        return new TestSuite( AppTest.class );
+    public void testAQuickBrownFox() {
+        // given
+        String underTest = "A quick brown fox jumps over the lazy dog";
+
+        // when
+        String result = App.listMissingLetters(underTest);
+
+        // then
+        assertEquals("", result);
     }
 
-    /**
-     * Rigorous Test :-)
-     */
-    public void testApp() {
-        assertTrue( true );
+    public void testFourScore() {
+        // given
+        String underTest = "Four score and seven years ago.";
+
+        // when
+        String result = App.listMissingLetters(underTest);
+
+        // then
+        assertEquals("bhijklmpqtwxz", result);
+    }
+
+    public void testToBeOrNot() {
+        // given
+        String underTest = "To be or not to be, that is the question!";
+
+        // when
+        String result = App.listMissingLetters(underTest);
+
+        // then
+        assertEquals("cdfgjklmpvwxyz", result);
+    }
+
+    public void testEmptyString() {
+        // given
+        String underTest = "";
+
+        // when
+        String result = App.listMissingLetters(underTest);
+
+        // then
+        assertEquals("abcdefghijklmnopqrstuvwxyz", result);
     }
 }
