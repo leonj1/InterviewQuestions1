@@ -1,7 +1,7 @@
 package com.commonbond.problem2.models;
 
 /**
- * Keep track of the shockwaves
+ * Shockwave POJO
  */
 public class Shockwave {
     static public String LEFT = "<";

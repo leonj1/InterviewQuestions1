@@ -11,9 +11,6 @@ import java.util.Set;
  * Keep track of initial Bomb positions and shockwaves
  */
 public class Space {
-    private static int LEFT = -1;
-    private static int RIGHT = 1;
-
     // track the initial location of the bombs in this space
     private List<Bomb> bombs = new ArrayList();
 
@@ -23,22 +20,27 @@ public class Space {
     // track the shockwave locations as they move through space; remove once out of bounds
     private List<Shockwave> shockwaves = new ArrayList();
 
-    // register bomb force to know where the shockwaves should be at any specified time slice
-    private int bombForce;
-
     // essentially the board where bombs or shockwaves get displayed
     private String[] spaces;
 
     private boolean ignited = false;
 
-    public Space(List<Bomb> bombs, int bombForce, int width) {
+    /**
+     * Space constructor with required fields
+     * @param bombs
+     * @param width
+     */
+    public Space(List<Bomb> bombs, int width) {
         this.bombs = bombs;
-        this.bombForce = bombForce;
         this.width = width;
         this.spaces = new String[width];
         this.resetSpaces();
     }
 
+    /**
+     * This plays out the scenarios to see what happens once the bombs are ignited
+     * @return      array of Strings of each scenario showing the bombs and shockwaves
+     */
     public List<String> watchItBurn() {
         List<String> scene = new ArrayList<String>();
         scene.add(this.getScene());
@@ -55,6 +57,11 @@ public class Space {
         return scene;
     }
 
+    /**
+     * Generate a String representation of the "space" with either Bombs or Shockwaves.
+     * If two shockwaves in opposite directions occupy a space then render "X"
+     * @return
+     */
     private String getScene() {
         if (this.ignited) {
             this.resetSpaces();
@@ -80,34 +87,44 @@ public class Space {
             }
         }
 
-        return Arrays.toString(this.spaces);
+        return Arrays.toString(this.spaces).replace("[", "").replace("]", "").replace(",", "").replaceAll("\\s+","");
     }
 
+    /**
+     * Let's us know if there are any more shockwaves on the board
+     * @param space     the space being checked to see if there are any shockwaves
+     * @return          boolean of whether or not there are any shockwaves on the "space" board
+     */
     private boolean isShockwavesGone(String space) {
         if(space == null) {
             return false;
         }
 
-        String[] unique = space.split("");
-        Set<String> foo = new HashSet<String>(Arrays.asList(unique));
-        if (foo.size() > 1) {
+        String[] spaceAsArray = space.split("");
+        Set<String> spaceUniqueValues = new HashSet<String>(Arrays.asList(spaceAsArray));
+        if (spaceUniqueValues.size() > 1) {
             return false;
         }
 
-        if (!foo.contains(".")) {
+        if (!spaceUniqueValues.contains(".")) {
             return false;
         }
 
         return true;
     }
 
+    /**
+     * Helper method to reset the "space" to dots for re-use.
+     */
     private void resetSpaces() {
         for(int i = 0; i < this.spaces.length; i++) {
             this.spaces[i] = ".";
         }
     }
 
-    // here is where we go from worrying about bombs to worrying about their shockwaves
+    /**
+     *  Here is where we go from worrying about bombs to worrying about their shockwaves
+     */
     private void ignite() {
         this.ignited = true;
         this.resetSpaces();
@@ -145,6 +162,12 @@ public class Space {
         }
     }
 
+    /**
+     * Determine if the provided position is within the bounds of the space.
+     * This helps us determine if we should keep tracking the object at that position or not.
+     * @param position      the position being checked
+     * @return              boolean of whether or not the position is within the "space" range
+     */
     private boolean inBounds(int position) {
         return position >= 0 && position < width;
     }

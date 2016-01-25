@@ -2,11 +2,10 @@ package com.commonbond.problem2.models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 /**
- * Track bomb meta data
+ * Bomb meta data
  */
 public class Bomb {
     private static int LEFT = -1;
@@ -21,14 +20,15 @@ public class Bomb {
         this.bombStrength = bombStrength;
     }
 
-    public int getBombStrength() {
-        return bombStrength;
-    }
-
     public int getInitialPosition() {
         return initialPosition;
     }
 
+    /**
+     * Only the bomb should be able to determine what its shockwaves should be,
+     * this is why this factory method exists.
+     * @return      a list of Shockwave objects based on this bomb object
+     */
     public List<Shockwave> generateShockWaves() {
         List<Shockwave> shockwaves = new ArrayList<Shockwave>();
 
