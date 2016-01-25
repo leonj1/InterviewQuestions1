@@ -1,6 +1,7 @@
 package com.commonbond.problem2;
 
 import com.commonbond.problem2.models.Bomb;
+import com.commonbond.problem2.models.Space;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,12 @@ import java.util.List;
 public class SolutionTwo {
     public static void main(String[] args) {
 
+        String scenario = "..B...B.BB.B..";
+        String[] result = explode(scenario, 1);
+
+        for(String scene : result) {
+            System.out.println(scene);
+        }
     }
 
     public static String[] explode(String bombs, int force) {
@@ -19,16 +26,19 @@ public class SolutionTwo {
         // get bomb positions
         String[] bombPositions = bombs.split("");
         for(int i = 0; i < bombPositions.length; i++) {
-            if (bombPositions[i] == "B") {
+            if ("B".equals(bombPositions[i])) {
                 bombList.add(new Bomb(i, force));
             }
         }
 
-        // explode the bomb - Time starts now
+        Space space = new Space(bombList, force, bombs.length());
+        List<String> scenes = space.watchItBurn();
 
-        // perform while loop until returned String is all dots (i.e. no bombs or shockwaves
+        String[] result = new String[scenes.size()];
+        for(int i=0; i<scenes.size(); i++) {
+            result[i] = scenes.get(i);
+        }
 
-        // TODO Fix this!
-        return new String[]{};
+        return result;
     }
 }
